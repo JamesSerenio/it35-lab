@@ -8,6 +8,7 @@ import {
       IonTitle, 
       IonToolbar 
   } from '@ionic/react';
+import React from 'react';
   
   const Details: React.FC = () => {
     return (

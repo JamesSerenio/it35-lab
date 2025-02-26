@@ -47,7 +47,23 @@
     font-size: 1.2rem;
     color: orange;
     padding: 1rem 0;
+    background: transparent;
+    border-top: 0.1rem solid;
+    border-left: 0.1rem solid;
+    border-right: 0.1rem solid;
+    border-bottom: 0.1rem solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(45deg, #f06, #3cf);
+
 }
+.custom-title {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #ec4899, #3b82f6);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: pulse 1.5s infinite;
+  }
 
 .education h1 {
     color: orange;

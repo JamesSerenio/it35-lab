@@ -17,7 +17,7 @@ const AboutMe: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>About Me</IonTitle>
+                    <IonTitle className="custom-title">About Me</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>

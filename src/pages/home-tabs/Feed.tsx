@@ -17,7 +17,7 @@ const Feed: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>Home</IonTitle>
+          <IonTitle className="custom-title">Home</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

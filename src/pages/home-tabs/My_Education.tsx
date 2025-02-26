@@ -26,7 +26,7 @@ const MyEducation: React.FC = () => {
                   <IonButtons slot="start">
                       <IonMenuButton />
                   </IonButtons>
-                  <IonTitle>My Education</IonTitle>
+                  <IonTitle className="custom-title">My Education</IonTitle>
               </IonToolbar>
           </IonHeader>
           <IonContent fullscreen>

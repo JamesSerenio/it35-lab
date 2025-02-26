@@ -6,7 +6,7 @@ import f from "../../assets/f.png";
 import g from "../../assets/g.png";
 import h from "../../assets/h.png";
 import i from "../../assets/i.png";
-import "../../styles/feed.css";
+import "../../styles/My_Portfolio.css";
 import {
   IonButtons,
   IonContent,
@@ -36,13 +36,12 @@ const Feed: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
-          <IonTitle>My Portfolio</IonTitle>
+          <IonTitle className="custom-title">My Portfolio</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <div className="feed-container">
-          <h3 className="feed-title">My Portfolio</h3>
-          <div className="portfolio-container">
+          <div className="portfolio-container"style={{ marginTop: "250px" }}>
             {portfolioItems.map((item, index) => (
               <div className="flip-box" key={index}>
                 <div className="flip-box-inner">

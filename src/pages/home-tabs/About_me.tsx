@@ -1,3 +1,4 @@
+import "../../styles/AboutMe.css";
 import { 
     IonButtons,
     IonContent, 
@@ -7,7 +8,7 @@ import {
     IonTitle, 
     IonToolbar 
 } from '@ionic/react';
-import "../../styles/AboutMe.css";
+
 const AboutMe: React.FC = () => {
     return (
         <IonPage>

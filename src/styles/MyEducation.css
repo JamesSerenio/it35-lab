@@ -1,0 +1,56 @@
+.box a {
+    text-decoration: none;
+}
+
+.education {
+    text-align: center;
+    padding: 2rem;
+}
+
+.education .box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.education .box {
+    width: 300px;
+    padding: 2rem;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+
+.education .box span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    font-size: 20px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #ec4899, #3b82f6);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: pulse 1.5s infinite;
+    text-decoration: none;
+}
+
+.education .box h3 {
+    font-size: 1.8rem;
+}
+
+.education .box p {
+    font-size: 1.2rem;
+    color: orange;
+    padding: 1rem 0;
+}
+
+.education h1 {
+    color: orange;
+    font-size: 2.5rem;
+}
+

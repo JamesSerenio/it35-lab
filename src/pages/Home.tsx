@@ -15,19 +15,21 @@ import {
       IonToolbar 
   } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { bookOutline, person, star } from 'ionicons/icons';
+import { bookOutline, briefcase, person, school, } from 'ionicons/icons';
 import { Route, Redirect } from 'react-router';
 
-import Favorites from './home-tabs/Favorites';
 import Feed from './home-tabs/Feed';
 import About_me from './home-tabs/About_me';
+import My_Education from './home-tabs/My_Education';
+import My_Portfolio from './home-tabs/My_Portfolio';
   
   const Home: React.FC = () => {
 
     const tabs = [
       {name:'Feed', tab:'feed',url: '/it35-lab/app/home/feed', icon: bookOutline},
       {name:'About Me', tab:'about_me', url: '/it35-lab/app/home/about_me', icon: person},
-      {name:'Favorites',tab:'favorites', url: '/it35-lab/app/home/favorites', icon: star},
+      {name:'My Education',tab:'My_Education', url: '/it35-lab/app/home/My_Education', icon: school},
+      {name:'My Portfolio',tab:'My_Portfolio', url: '/it35-lab/app/home/My_Portfolio', icon: briefcase},
     ]
     
     return (
@@ -47,7 +49,8 @@ import About_me from './home-tabs/About_me';
 
           <Route exact path="/it35-lab/app/home/feed" render={Feed} />
           <Route exact path="/it35-lab/app/home/about_me" render={About_me} />
-          <Route exact path="/it35-lab/app/home/favorites" render={Favorites} />
+          <Route exact path="/it35-lab/app/home/My_Education" render={My_Education} />
+          <Route exact path="/it35-lab/app/home/My_Portfolio" render={My_Portfolio} />
           <Route exact path="/it35-lab/app/home">
             <Redirect to="/it35-lab/app/home/feed" />
           </Route>

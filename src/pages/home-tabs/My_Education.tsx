@@ -1,4 +1,3 @@
-import "../../styles/MyEducation.css";
 import { 
   IonButtons,
   IonContent, 
@@ -8,6 +7,7 @@ import {
   IonTitle, 
   IonToolbar 
 } from '@ionic/react';
+import "../../styles/MyEducation.css";
 
 const educationData = [
   { year: "2018", title: "Sports", description: "This year, I joined the swimming team for our school, and we practiced for a year for the upcoming competition." },

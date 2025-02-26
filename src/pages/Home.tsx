@@ -26,7 +26,7 @@ import About_me from './home-tabs/About_me';
 
     const tabs = [
       {name:'Feed', tab:'feed',url: '/it35-lab/app/home/feed', icon: bookOutline},
-      {name:'About Me', tab:'about_me', url: '/it35-lab/app/home/search', icon: person},
+      {name:'About Me', tab:'about_me', url: '/it35-lab/app/home/about_me', icon: person},
       {name:'Favorites',tab:'favorites', url: '/it35-lab/app/home/favorites', icon: star},
     ]
     

@@ -17,13 +17,13 @@ import {
   import {homeOutline, logOutOutline, rocketOutline} from 'ionicons/icons';
 import { Redirect, Route } from 'react-router';
 import Home from './Home';
-import About from './About';
 import Details from './Details';
+import Contact from './Contact';
 
   const Menu: React.FC = () => {
     const path = [
         {name:'Home', url: '/it35-lab/app/Home', icon: homeOutline},
-        {name:'About', url: '/it35-lab/app/About', icon: rocketOutline},
+        {name:'Contact', url: '/it35-lab/app/Contact', icon: rocketOutline},
     ]
 
     return (
@@ -59,7 +59,7 @@ import Details from './Details';
                 <IonRouterOutlet id="main">
                     <Route exact path="/it35-lab/app/Home" component={Home} />
                     <Route exact path="/it35-lab/app/Home/Details" component={Details} />
-                    <Route exact path="/it35-lab/app/About" component={About} />
+                    <Route exact path="/it35-lab/app/Contact" component={Contact} />
 
                     <Route exact path="/it35-lab/app">
                         <Redirect to="/it35-lab/app/Home"/>

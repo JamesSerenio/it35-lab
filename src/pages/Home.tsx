@@ -52,7 +52,7 @@ import My_Portfolio from './home-tabs/My_Portfolio';
           <Route exact path="/it35-lab/app/home/My_Education" render={My_Education} />
           <Route exact path="/it35-lab/app/home/My_Portfolio" render={My_Portfolio} />
           <Route exact path="/it35-lab/app/home">
-            <Redirect to="/it35-lab/app/home/feed" />
+            <Redirect to="/it35-lab/app/home/Portfolio" />
           </Route>
         </IonRouterOutlet>
         </IonTabs>

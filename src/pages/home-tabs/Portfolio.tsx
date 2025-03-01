@@ -1,5 +1,5 @@
 import pics from "../../assets/pics.png";
-import "../../styles/feed.css";
+import "../../styles/Portfolio.css";
 import {
   IonButtons,
   IonContent,

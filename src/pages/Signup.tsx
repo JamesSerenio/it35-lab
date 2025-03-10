@@ -11,7 +11,9 @@ import {
     IonLabel,
     IonList,
     IonToast,
-    IonFooter
+    IonFooter,
+    IonModal,
+    IonText
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 
@@ -21,17 +23,26 @@ const Signup: React.FC = () => {
     const [regPassword, setRegPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
+    const [showModal, setShowModal] = useState(false); 
 
     const handleRegister = () => {
         if (regPassword === confirmPassword) {
-            // Store the user credentials in local storage (or any other method)
             localStorage.setItem('username', regUsername);
             localStorage.setItem('password', regPassword);
             setShowToast(true);
-            history.push('/it35-lab'); // Redirect to login after successful registration
+            setShowModal(true);
         } else {
             alert("Passwords do not match!");
         }
+    };
+
+    const handleConfirm = () => {
+        setShowModal(false);
+        history.push('/it35-lab');
+    };
+
+    const handleCancel = () => {
+        setShowModal(false); 
     };
 
     return (
@@ -67,6 +78,25 @@ const Signup: React.FC = () => {
                     duration={2000}
                 />
             </IonFooter>
+
+            {}
+            <IonModal isOpen={showModal} onDidDismiss={handleCancel}>
+                <IonHeader>
+                    <IonToolbar>
+                        <IonTitle>Confirm Registration</IonTitle>
+                    </IonToolbar>
+                </IonHeader>
+                <IonContent>
+                    <IonText>
+                        <h2>Registration Successful!</h2>
+                        <p>Do you want to proceed to the login page?</p>
+                    </IonText>
+                </IonContent>
+                <IonFooter>
+                    <IonButton expand="full" onClick={handleConfirm}>Yes</IonButton>
+                    <IonButton expand="full" color="light" onClick={handleCancel}>No</IonButton>
+                </IonFooter>
+            </IonModal>
         </IonPage>
     );
 };

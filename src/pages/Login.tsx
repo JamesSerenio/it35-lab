@@ -20,14 +20,31 @@ const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
 
     const doLogin = () => {
-        // Add your login logic here
-        if (username && password) {
-            // Navigate to the app page (replace with your actual app route)
-            history.push('/it35-lab/app'); // Use history.push for navigation
+        // Retrieve stored credentials
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        // Check if the entered credentials match the stored ones
+        if (!storedUsername || !storedPassword) {
+            setToastMessage("No account found. Please register first.");
+            setShowToast(true);
+            return; // Exit the function if no account exists
+        }
+
+        if (username === storedUsername && password === storedPassword) {
+            setToastMessage("Login Successful!"); // Set success message
+            setShowToast(true); // Show the toast
+
+            // Delay navigation to the app page
+            setTimeout(() => {
+                history.push('/it35-lab/app'); // Navigate to the app page
+            }, 2000); // Delay for 2 seconds to show the toast
         } else {
-            setShowToast(true); // Show toast if login fails (for example, empty fields)
+            setToastMessage("Invalid username or password.");
+            setShowToast(true); // Show toast if login fails
         }
     };
 
@@ -56,7 +73,7 @@ const Login: React.FC = () => {
                 <IonToast
                     isOpen={showToast}
                     onDidDismiss={() => setShowToast(false)}
-                    message="Please enter your username and password."
+                    message={toastMessage}
                     duration={2000}
                 />
             </IonFooter>

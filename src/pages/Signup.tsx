@@ -13,10 +13,10 @@ import {
     IonToast,
     IonFooter
 } from '@ionic/react';
-import { useHistory } from 'react-router-dom'; // Import useHistory
+import { useHistory } from 'react-router-dom';
 
 const Signup: React.FC = () => {
-    const history = useHistory(); // Initialize useHistory
+    const history = useHistory();
     const [regUsername, setRegUsername] = useState('');
     const [regPassword, setRegPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,10 +24,11 @@ const Signup: React.FC = () => {
 
     const handleRegister = () => {
         if (regPassword === confirmPassword) {
-            // Add your registration logic here
+            // Store the user credentials in local storage (or any other method)
+            localStorage.setItem('username', regUsername);
+            localStorage.setItem('password', regPassword);
             setShowToast(true);
-            // Redirect to login after successful registration
-            history.push('/it35-lab'); // Use history.push for navigation to login
+            history.push('/it35-lab'); // Redirect to login after successful registration
         } else {
             alert("Passwords do not match!");
         }
@@ -56,7 +57,7 @@ const Signup: React.FC = () => {
                     </IonItem>
                 </IonList>
                 <IonButton onClick={handleRegister} expand="full">Create Account</IonButton>
-                <IonButton onClick={() => history.push('/it35-lab')} expand="full" color="light">Back to Login</IonButton> {/* Use history.push for navigation */}
+                <IonButton onClick={() => history.push('/it35-lab')} expand="full" color="light">Back to Login</IonButton>
             </IonContent>
             <IonFooter>
                 <IonToast

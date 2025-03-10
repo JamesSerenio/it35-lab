@@ -13,38 +13,38 @@ import {
     IonToast,
     IonFooter
 } from '@ionic/react';
-import { useHistory } from 'react-router-dom'; // Import useHistory
+import { useHistory } from 'react-router-dom'; 
 
 const Login: React.FC = () => {
-    const history = useHistory(); // Initialize useHistory
+    const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
     const doLogin = () => {
-        // Retrieve stored credentials
+ 
         const storedUsername = localStorage.getItem('username');
         const storedPassword = localStorage.getItem('password');
 
-        // Check if the entered credentials match the stored ones
+
         if (!storedUsername || !storedPassword) {
             setToastMessage("No account found. Please register first.");
             setShowToast(true);
-            return; // Exit the function if no account exists
+            return;
         }
 
         if (username === storedUsername && password === storedPassword) {
-            setToastMessage("Login Successful!"); // Set success message
-            setShowToast(true); // Show the toast
+            setToastMessage("Login Successful!"); 
+            setShowToast(true); 
 
-            // Delay navigation to the app page
+         
             setTimeout(() => {
-                history.push('/it35-lab/app'); // Navigate to the app page
-            }, 2000); // Delay for 2 seconds to show the toast
+                history.push('/it35-lab/app'); 
+            }, 2000); 
         } else {
             setToastMessage("Invalid username or password.");
-            setShowToast(true); // Show toast if login fails
+            setShowToast(true); 
         }
     };
 
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
                     </IonItem>
                 </IonList>
                 <IonButton onClick={doLogin} expand="full">Login</IonButton>
-                <IonButton onClick={() => history.push('/signup')} expand="full" color="secondary">Register</IonButton> {/* Use history.push for navigation */}
+                <IonButton onClick={() => history.push('/signup')} expand="full" color="secondary">Register</IonButton> {}
             </IonContent>
             <IonFooter>
                 <IonToast

@@ -13,17 +13,22 @@ import {
     IonToast,
     IonFooter
 } from '@ionic/react';
-import { useIonRouter } from '@ionic/react';
+import { useHistory } from 'react-router-dom'; // Import useHistory
 
 const Login: React.FC = () => {
-    const navigation = useIonRouter();
+    const history = useHistory(); // Initialize useHistory
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
 
     const doLogin = () => {
         // Add your login logic here
-        navigation.push('/it35-lab/app', 'forward', 'replace');
+        if (username && password) {
+            // Navigate to the app page (replace with your actual app route)
+            history.push('/it35-lab/app'); // Use history.push for navigation
+        } else {
+            setShowToast(true); // Show toast if login fails (for example, empty fields)
+        }
     };
 
     return (
@@ -45,13 +50,13 @@ const Login: React.FC = () => {
                     </IonItem>
                 </IonList>
                 <IonButton onClick={doLogin} expand="full">Login</IonButton>
-                <IonButton onClick={() => navigation.push('/signup')} expand="full" color="secondary">Register</IonButton>
+                <IonButton onClick={() => history.push('/signup')} expand="full" color="secondary">Register</IonButton> {/* Use history.push for navigation */}
             </IonContent>
             <IonFooter>
                 <IonToast
                     isOpen={showToast}
                     onDidDismiss={() => setShowToast(false)}
-                    message="Account created successfully!"
+                    message="Please enter your username and password."
                     duration={2000}
                 />
             </IonFooter>

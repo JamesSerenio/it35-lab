@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { 
+import {
     IonButton,
-    IonContent, 
-    IonHeader, 
-    IonPage, 
-    IonTitle, 
-    IonToolbar, 
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar,
     IonInput,
     IonItem,
     IonLabel,
     IonList,
     IonToast,
     IonFooter,
-    IonModal,
-    IonText
+    IonAlert
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { supabase } from '../utils/supabaseClient';
@@ -25,7 +24,8 @@ const Signup: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
-    const [showModal, setShowModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleRegister = async () => {
         if (!email.includes('@')) {
@@ -40,23 +40,30 @@ const Signup: React.FC = () => {
             return;
         }
 
-        const { error } = await supabase.auth.signUp({
-            email,
-            password
-        });
+        try {
+            // Attempt to sign up the user
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password
+            });
 
-        if (error) {
-            setToastMessage(error.message);
-        } else {
-            setToastMessage("Account created successfully! Check your email to verify your account.");
-            setShowModal(true);
+            if (error) {
+                throw new Error(error.message);
+            }
+
+            console.log("Signup response:", data);
+
+            setToastMessage("Account created! Check your email to verify.");
+            setShowToast(true);
+
+            // Redirect to login page after 3 seconds
+            setTimeout(() => history.push('/it35-lab'), 3000);
+
+        } catch (error) {
+            console.error("Signup Error:", error);
+            setAlertMessage(error instanceof Error ? error.message : "An unknown error occurred.");
+            setShowAlert(true);
         }
-        setShowToast(true);
-    };
-
-    const handleConfirm = () => {
-        setShowModal(false);
-        history.push('/it35-lab');
     };
 
     return (
@@ -66,6 +73,7 @@ const Signup: React.FC = () => {
                     <IonTitle>Sign Up</IonTitle>
                 </IonToolbar>
             </IonHeader>
+
             <IonContent className='ion-padding'>
                 <IonList>
                     <IonItem>
@@ -93,9 +101,11 @@ const Signup: React.FC = () => {
                         />
                     </IonItem>
                 </IonList>
+                
                 <IonButton onClick={handleRegister} expand="full">Create Account</IonButton>
                 <IonButton onClick={() => history.push('/it35-lab')} expand="full" color="light">Back to Login</IonButton>
             </IonContent>
+
             <IonFooter>
                 <IonToast
                     isOpen={showToast}
@@ -105,22 +115,13 @@ const Signup: React.FC = () => {
                 />
             </IonFooter>
 
-            <IonModal isOpen={showModal}>
-                <IonHeader>
-                    <IonToolbar>
-                        <IonTitle>Confirm Registration</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <IonContent>
-                    <IonText>
-                        <h2>Registration Successful!</h2>
-                        <p>Please check your email to verify your account before logging in.</p>
-                    </IonText>
-                </IonContent>
-                <IonFooter>
-                    <IonButton expand="full" onClick={handleConfirm}>Go to Login</IonButton>
-                </IonFooter>
-            </IonModal>
+            <IonAlert
+                isOpen={showAlert}
+                onDidDismiss={() => setShowAlert(false)}
+                header="Error"
+                message={alertMessage}
+                buttons={['OK']}
+            />
         </IonPage>
     );
 };

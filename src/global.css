@@ -1,0 +1,39 @@
+@keyframes borderRotation {
+    0% {
+      border-image: linear-gradient(to bottom, red, blue, green, yellow) 0;
+    }
+    25% {
+      border-image: linear-gradient(to right, red, blue, green, yellow) 1;
+    }
+    50% {
+      border-image: linear-gradient(to top, red, blue, green, yellow) 1;
+    }
+    75% {
+      border-image: linear-gradient(to left, red, blue, green, yellow) 1;
+    }
+    100% {
+      border-image: linear-gradient(to bottom, red, blue, green, yellow) 1;
+    }
+  }
+  
+  .animate-border {
+    border: 1px solid transparent; /* Set a transparent border to make the effect visible */
+    border-image: linear-gradient(to bottom, red, blue, green, yellow) 1;
+    animation: borderRotation 4s infinite;
+    padding: 2rem; /* Adjust padding to fit your design */
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 255, 0.2), 0 8px 16px rgba(0, 255, 0, 0.3); /* Multi-color shadow */
+  }
+
+  ion-input:focus, ion-input:focus-within {
+    --border-color: rgb(235, 73, 73) !important;
+    --highlight-color-focused: rgb(235, 73, 73) !important;
+    box-shadow: 0 0 10px rgb(235, 73, 73) !important; /* Red shadow */
+  }
+  
+  ion-input .input-wrapper:focus {
+    border-color: rgb(235, 73, 73) !important;
+    box-shadow: 0 0 10px rgb(235, 73, 73) !important; /* Red shadow */
+  }
+  
+  
+  

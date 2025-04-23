@@ -17,23 +17,21 @@
   }
   
   .animate-border {
-    border: 1px solid transparent; /* Set a transparent border to make the effect visible */
+    border: 1px solid transparent; 
     border-image: linear-gradient(to bottom, red, blue, green, yellow) 1;
     animation: borderRotation 4s infinite;
-    padding: 2rem; /* Adjust padding to fit your design */
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 255, 0.2), 0 8px 16px rgba(0, 255, 0, 0.3); /* Multi-color shadow */
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 255, 0.2), 0 8px 16px rgba(0, 255, 0, 0.3); 
   }
 
   ion-input:focus, ion-input:focus-within {
     --border-color: rgb(235, 73, 73) !important;
     --highlight-color-focused: rgb(235, 73, 73) !important;
-    box-shadow: 0 0 10px rgb(235, 73, 73) !important; /* Red shadow */
+    box-shadow: 0 0 10px rgb(235, 73, 73) !important; 
   }
   
   ion-input .input-wrapper:focus {
     border-color: rgb(235, 73, 73) !important;
-    box-shadow: 0 0 10px rgb(235, 73, 73) !important; /* Red shadow */
+    box-shadow: 0 0 10px rgb(235, 73, 73) !important; 
   }
-  
-  
   

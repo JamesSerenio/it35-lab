@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { IonApp, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonInput, IonLabel, IonModal, IonFooter, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonAlert, IonText, IonAvatar, IonCol, IonGrid, IonRow, IonIcon, IonPopover } from '@ionic/react';
+import { IonContent, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonButton, IonPopover, IonIcon, IonLabel, IonText, IonAvatar, IonCol, IonRow, IonInput, IonAlert, IonModal, IonHeader, IonToolbar, IonFooter, IonTitle } from '@ionic/react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '../utils/supabaseClient';
-import { colorFill, pencil, trash } from 'ionicons/icons';
+import { pencil, trash, saveOutline, closeCircleOutline } from 'ionicons/icons';
 
 interface Post {
   post_id: string;
@@ -40,43 +40,41 @@ const FeedContainer = () => {
         }
       }
     };
+
     const fetchPosts = async () => {
       const { data, error } = await supabase.from('posts').select('*').order('post_created_at', { ascending: false });
       if (!error) setPosts(data as Post[]);
     };
+
     fetchUser();
     fetchPosts();
   }, []);
 
   const createPost = async () => {
     if (!postContent || !user || !username) return;
-  
-    // Fetch avatar URL
+
     const { data: userData, error: userError } = await supabase
       .from('users')
       .select('user_avatar_url')
       .eq('user_id', user.id)
       .single();
-  
+
     if (userError) {
       console.error('Error fetching user avatar:', userError);
       return;
     }
-  
+
     const avatarUrl = userData?.user_avatar_url || 'https://ionicframework.com/docs/img/demos/avatar.svg';
-  
-    // Insert post with avatar URL
+
     const { data, error } = await supabase
       .from('posts')
-      .insert([
-        { post_content: postContent, user_id: user.id, username, avatar_url: avatarUrl }
-      ])
+      .insert([{ post_content: postContent, user_id: user.id, username, avatar_url: avatarUrl }])
       .select('*');
-  
+
     if (!error && data) {
       setPosts([data[0] as Post, ...posts]);
     }
-  
+
     setPostContent('');
   };
 
@@ -113,7 +111,7 @@ const FeedContainer = () => {
       <IonContent>
         {user ? (
           <>
-            <IonCard>
+            <IonCard className="animate-border">
               <IonCardHeader>
                 <IonCardTitle>Create Post</IonCardTitle>
               </IonCardHeader>
@@ -128,9 +126,9 @@ const FeedContainer = () => {
                 <IonButton onClick={createPost}>Post</IonButton>
               </div>
             </IonCard>
-  
+
             {posts.map(post => (
-              <IonCard key={post.post_id} style={{ marginTop: '2rem' }}>
+              <IonCard key={post.post_id} className="animate-border" style={{ marginTop: '2rem' }}>
                 <IonCardHeader>
                   <IonRow>
                     <IonCol size="1.85">
@@ -158,13 +156,13 @@ const FeedContainer = () => {
                     </IonCol>
                   </IonRow>
                 </IonCardHeader>
-  
+
                 <IonCardContent>
-                  <IonText style={{ color: 'black' }}>
+                  <IonText style={{ color: 'white' }}>
                     <h1>{post.post_content}</h1>
                   </IonText>
                 </IonCardContent>
-  
+
                 <IonPopover
                   isOpen={popoverState.open && popoverState.postId === post.post_id}
                   event={popoverState.event}
@@ -179,7 +177,7 @@ const FeedContainer = () => {
                       setPopoverState({ open: false, event: null, postId: null });
                     }}
                   >
-                    Edit
+                    <IonIcon icon={pencil} />
                   </IonButton>
                   <IonButton
                     fill="clear"
@@ -189,9 +187,10 @@ const FeedContainer = () => {
                       setPopoverState({ open: false, event: null, postId: null });
                     }}
                   >
-                    Delete
+                    <IonIcon icon={trash} />
                   </IonButton>
                 </IonPopover>
+
               </IonCard>
             ))}
           </>
@@ -199,7 +198,7 @@ const FeedContainer = () => {
           <IonLabel>Loading...</IonLabel>
         )}
       </IonContent>
-  
+
       <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
         <IonHeader>
           <IonToolbar>
@@ -214,11 +213,15 @@ const FeedContainer = () => {
           />
         </IonContent>
         <IonFooter>
-          <IonButton onClick={savePost}>Save</IonButton>
-          <IonButton onClick={() => setIsModalOpen(false)}>Cancel</IonButton>
+          <IonButton onClick={savePost}>
+            <IonIcon icon={saveOutline} /> Save
+          </IonButton>
+          <IonButton onClick={() => setIsModalOpen(false)}>
+            <IonIcon icon={closeCircleOutline} /> Cancel
+          </IonButton>
         </IonFooter>
       </IonModal>
-  
+
       <IonAlert
         isOpen={isAlertOpen}
         onDidDismiss={() => setIsAlertOpen(false)}
@@ -228,8 +231,6 @@ const FeedContainer = () => {
       />
     </>
   );
-  
-
 };
 
 export default FeedContainer;

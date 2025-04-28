@@ -56,7 +56,7 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md bg-transparent p-6 rounded-2xl shadow-none mt-12 sm:mt-16 sm:mx-auto animate-border">
   <div className="flex flex-col items-center mb-6">
     <img
-      src="https://cdn-icons-gif.flaticon.com/8121/8121295.gif"
+      src="https://cdn-icons-gif.flaticon.com/15713/15713229.gif"
       alt="Login Icon"
       className="w-32 h-32 mb-4 rounded-full"
     />

@@ -1,0 +1,66 @@
+export const questions = {
+  english: [
+    { question: "What is the synonym of 'happy'?", options: ["Sad", "Joyful", "Angry", "Tired"], answer: "Joyful" },
+    { question: "Choose the correct sentence.", options: ["She don't like apples.", "She doesn't likes apples.", "She doesn't like apples.", "She not like apples."], answer: "She doesn't like apples." },
+    { question: "What is an antonym of 'cold'?", options: ["Chilly", "Freezing", "Warm", "Icy"], answer: "Warm" },
+    { question: "What type of word is 'quickly'?", options: ["Noun", "Verb", "Adverb", "Adjective"], answer: "Adverb" },
+    { question: "Which word is a verb?", options: ["Run", "Blue", "Quick", "Happy"], answer: "Run" },
+    { question: "Choose the correct spelling.", options: ["Recieve", "Receive", "Receeve", "Receiv"], answer: "Receive" },
+    { question: "What is a synonym for 'angry'?", options: ["Calm", "Happy", "Furious", "Sleepy"], answer: "Furious" },
+    { question: "Identify the noun in this sentence: 'The dog barked loudly.'", options: ["dog", "barked", "loudly", "The"], answer: "dog" },
+    { question: "Which word is an adjective?", options: ["Swim", "Beautiful", "Run", "Eat"], answer: "Beautiful" },
+    { question: "What punctuation ends a question?", options: [".", "!", "?", ","], answer: "?" },
+  ],
+
+  math: [
+    { question: "What is 5 + 7?", options: ["10", "12", "13", "11"], answer: "12" },
+    { question: "What is the square root of 49?", options: ["6", "7", "8", "9"], answer: "7" },
+    { question: "What is 15 - 6?", options: ["9", "10", "8", "7"], answer: "9" },
+    { question: "What is 8 × 3?", options: ["24", "21", "26", "20"], answer: "24" },
+    { question: "What is 100 ÷ 25?", options: ["4", "2", "3", "5"], answer: "4" },
+    { question: "What is 3²?", options: ["9", "6", "12", "3"], answer: "9" },
+    { question: "What is 10% of 200?", options: ["20", "10", "30", "15"], answer: "20" },
+    { question: "What is the next prime number after 7?", options: ["8", "9", "10", "11"], answer: "11" },
+    { question: "What is 9 + 6 ÷ 3?", options: ["5", "11", "15", "17"], answer: "11" },
+    { question: "Which number is a multiple of 6?", options: ["18", "20", "13", "11"], answer: "18" },
+  ],
+
+  science: [
+    { question: "What planet is known as the Red Planet?", options: ["Earth", "Mars", "Venus", "Jupiter"], answer: "Mars" },
+    { question: "What gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Hydrogen", "Nitrogen"], answer: "Carbon Dioxide" },
+    { question: "What organ pumps blood?", options: ["Lungs", "Liver", "Heart", "Brain"], answer: "Heart" },
+    { question: "What do humans breathe in?", options: ["Oxygen", "Carbon Dioxide", "Hydrogen", "Nitrogen"], answer: "Oxygen" },
+    { question: "Which part of the plant conducts photosynthesis?", options: ["Roots", "Stem", "Leaves", "Flowers"], answer: "Leaves" },
+    { question: "Water freezes at what temperature in Celsius?", options: ["0°C", "10°C", "32°C", "100°C"], answer: "0°C" },
+    { question: "What is H₂O?", options: ["Oxygen", "Hydrogen", "Salt", "Water"], answer: "Water" },
+    { question: "What is the center of an atom?", options: ["Electron", "Proton", "Nucleus", "Neutron"], answer: "Nucleus" },
+    { question: "Which planet is closest to the sun?", options: ["Venus", "Earth", "Mercury", "Mars"], answer: "Mercury" },
+    { question: "How many legs does an insect have?", options: ["6", "4", "8", "2"], answer: "6" },
+  ],
+
+  leadership: [
+    { question: "What is a key characteristic of a good leader?", options: ["Selfishness", "Empathy", "Greed", "Indifference"], answer: "Empathy" },
+    { question: "Which of these is important for leadership?", options: ["Being authoritative", "Listening to others", "Being inflexible", "Avoiding risks"], answer: "Listening to others" },
+    { question: "Good leaders are often:", options: ["Bossy", "Supportive", "Lazy", "Silent"], answer: "Supportive" },
+    { question: "Which skill helps leaders guide teams?", options: ["Ignoring", "Delegation", "Shouting", "Procrastinating"], answer: "Delegation" },
+    { question: "Leaders should be:", options: ["Honest", "Dishonest", "Rude", "Arrogant"], answer: "Honest" },
+    { question: "What helps build trust in teams?", options: ["Communication", "Secrecy", "Lies", "Silence"], answer: "Communication" },
+    { question: "Great leaders often inspire others by:", options: ["Fear", "Example", "Threats", "Silence"], answer: "Example" },
+    { question: "Which quality is essential for solving conflicts?", options: ["Aggression", "Patience", "Avoidance", "Laziness"], answer: "Patience" },
+    { question: "A leader should always take:", options: ["Credit only", "Responsibility", "Breaks", "Shortcuts"], answer: "Responsibility" },
+    { question: "Effective leadership requires:", options: ["Luck", "Experience", "Communication", "Both B and C"], answer: "Both B and C" },
+  ],
+
+  communication: [
+    { question: "Which of the following is an example of non-verbal communication?", options: ["Speaking clearly", "Using hand gestures", "Writing a letter", "Making a phone call"], answer: "Using hand gestures" },
+    { question: "What is the most important part of effective communication?", options: ["Speaking loudly", "Listening actively", "Interrupting often", "Talking nonstop"], answer: "Listening actively" },
+    { question: "Which is a barrier to effective communication?", options: ["Clarity", "Noise", "Understanding", "Feedback"], answer: "Noise" },
+    { question: "What is essential in written communication?", options: ["Grammar", "Speed", "Silence", "Loud voice"], answer: "Grammar" },
+    { question: "Which of these improves communication?", options: ["Interrupting", "Clarifying", "Assuming", "Judging"], answer: "Clarifying" },
+    { question: "Emails are a form of:", options: ["Verbal", "Non-verbal", "Written", "Visual"], answer: "Written" },
+    { question: "Facial expressions are part of:", options: ["Written", "Verbal", "Non-verbal", "Digital"], answer: "Non-verbal" },
+    { question: "Feedback in communication means:", options: ["Criticizing", "Ignoring", "Responding", "Interrupting"], answer: "Responding" },
+    { question: "To communicate clearly, you should:", options: ["Use jargon", "Speak unclearly", "Use simple language", "Shout"], answer: "Use simple language" },
+    { question: "Which of the following is active listening?", options: ["Looking away", "Interrupting", "Nodding and responding", "Changing topic"], answer: "Nodding and responding" },
+  ]
+};

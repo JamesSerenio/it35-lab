@@ -1,34 +1,42 @@
-import { 
+import {
   IonButton,
-  IonContent, 
-  IonHeader, 
-  IonPage, 
-  IonTitle, 
-  IonToolbar, 
-  useIonRouter
-} from '@ionic/react';
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  useIonRouter,
+  IonText,
+} from "@ionic/react";
+import "./Started.css";
 
-const Login: React.FC = () => {
+const Started: React.FC = () => {
   const navigation = useIonRouter();
 
   const dostarted = () => {
-    navigation.push('/', 'forward', 'replace'); // Navigate to Home
+    navigation.push("/", "forward", "replace"); // Navigate to Home
   };
 
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Get Started</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle className="title-center">Self-Assessment</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className='ion-padding'>
-        <IonButton onClick={dostarted} expand="full">
-          Get Started
-        </IonButton>
+      <IonContent className="ion-padding started-content">
+        <div className="started-box">
+          <IonText color="dark">
+            <h1>Ready to Start?</h1>
+            <p>Let's begin your self-assessment journey.</p>
+          </IonText>
+          <IonButton onClick={dostarted} expand="block" className="start-btn">
+            Get Started
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Login;
+export default Started;

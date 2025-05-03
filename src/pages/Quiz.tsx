@@ -19,21 +19,28 @@ import { questions } from "../data/questions";
 const Quiz: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const history = useHistory();
-  const location = useLocation(); // ✅ gets a unique key on every visit
+  const location = useLocation<{ level?: number }>();
 
+  // Get the selected level from route state or default to level 1
+  const level = location.state?.level ?? 1;
+
+  // Get the corresponding category key from the questions object
   const categoryKey = category.toLowerCase() as keyof typeof questions;
-  const categoryQuestions = questions[categoryKey] || [];
+  const categoryQuestions = questions[categoryKey];
+
+  // Safely access the correct level of questions
+  const levelKey = `level${level}` as keyof typeof categoryQuestions;
+  const levelQuestions = categoryQuestions?.[levelKey] ?? [];
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
 
-  // ✅ Reset when the route is visited again (e.g., user taps English again)
   useEffect(() => {
     setCurrentQuestionIndex(0);
     setSelectedAnswers([]);
-  }, [location.key]); // ✅ triggered every time route is re-visited
+  }, [location.key]); // Reset when revisiting or navigating to the quiz again
 
-  const currentQuestion = categoryQuestions[currentQuestionIndex];
+  const currentQuestion = levelQuestions[currentQuestionIndex];
 
   const handleAnswerSelect = (answer: string) => {
     const newAnswers = [...selectedAnswers];
@@ -42,13 +49,13 @@ const Quiz: React.FC = () => {
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex < categoryQuestions.length - 1) {
+    if (currentQuestionIndex < levelQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       const score = selectedAnswers.filter(
-        (answer, index) => answer === categoryQuestions[index]?.answer
+        (answer, index) => answer === levelQuestions[index]?.answer
       ).length;
-      history.push(`/result/${score}`);
+      history.push(`/result/${score}`, { category, level });
     }
   };
 
@@ -59,7 +66,9 @@ const Quiz: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{category.charAt(0).toUpperCase() + category.slice(1)} Quiz</IonTitle>
+          <IonTitle>
+            {category.charAt(0).toUpperCase() + category.slice(1)} Quiz (Level {level})
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -69,7 +78,7 @@ const Quiz: React.FC = () => {
               <IonCardTitle>{currentQuestion.question}</IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-              {currentQuestion.options.map((option, idx) => (
+              {currentQuestion.options?.map((option, idx) => (
                 <IonButton
                   key={idx}
                   expand="block"
@@ -82,10 +91,10 @@ const Quiz: React.FC = () => {
             </IonCardContent>
           </IonCard>
         ) : (
-          <p>No questions available for this category.</p>
+          <p>No questions available for this level.</p>
         )}
         <IonButton expand="block" onClick={handleNext}>
-          {currentQuestionIndex < categoryQuestions.length - 1 ? "Next Question" : "Finish Quiz"}
+          {currentQuestionIndex < levelQuestions.length - 1 ? "Next Question" : "Finish Quiz"}
         </IonButton>
       </IonContent>
     </IonPage>

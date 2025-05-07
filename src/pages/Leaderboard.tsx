@@ -21,6 +21,7 @@ interface Result {
   taken_at?: string;
   user: {
     username: string;
+    user_avatar_url?: string;
   } | null;
 }
 
@@ -31,7 +32,7 @@ const Leaderboard: React.FC = () => {
     const fetchResults = async () => {
       const { data, error } = await supabase
         .from("results")
-        .select("score, category, level, taken_at, user:users(username)") // Join `users` table
+        .select("score, category, level, taken_at, user:users(username, user_avatar_url)") 
         .order("score", { ascending: false })
         .order("taken_at", { ascending: false });
 
@@ -50,8 +51,8 @@ const Leaderboard: React.FC = () => {
 
     const date = new Date(dateString);
 
-    // Manually adjust for Philippine Time (PHT), which is UTC +8
-    const phtDate = new Date(date.getTime() + 8 * 60 * 60 * 1000); // Convert to PHT
+
+    const phtDate = new Date(date.getTime() + 8 * 60 * 60 * 1000); 
 
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
@@ -64,7 +65,7 @@ const Leaderboard: React.FC = () => {
       hour12: true,
     };
 
-    // Format the date in PHT
+
     const formattedDate = new Intl.DateTimeFormat("en-PH", options).format(phtDate);
 
     return formattedDate;
@@ -81,10 +82,13 @@ const Leaderboard: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
-        {/* Table-like Layout using IonGrid */}
+        {}
         <IonGrid>
           <IonRow>
-            <IonCol size="3">
+            <IonCol size="1">
+              <strong>Avatar</strong>
+            </IonCol>
+            <IonCol size="2">
               <strong>Username</strong>
             </IonCol>
             <IonCol size="3">
@@ -101,21 +105,39 @@ const Leaderboard: React.FC = () => {
             </IonCol>
           </IonRow>
 
-          {/* Loop through and display results in a table format */}
+          {}
           {results.map((res, index) => (
             <IonRow key={index}>
-              <IonCol size="3">
+              {}
+              <IonCol size="1">
+                <img
+                  src={res.user?.user_avatar_url || "/path/to/default-avatar.png"} // Use default avatar if none exists
+                  alt="Avatar"
+                  style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                />
+              </IonCol>
+
+              {}
+              <IonCol size="2">
                 <IonLabel>{res.user?.username || "Unknown User"}</IonLabel>
               </IonCol>
+              
+              {}
               <IonCol size="3">
                 <IonLabel>{res.category}</IonLabel>
               </IonCol>
+              
+              {}
               <IonCol size="2">
                 <IonLabel>{res.level}</IonLabel>
               </IonCol>
+              
+              {}
               <IonCol size="2">
                 <IonLabel>{res.score}/5</IonLabel>
               </IonCol>
+
+              {}
               <IonCol size="2">
                 <IonLabel>{formatDate(res.taken_at)}</IonLabel>
               </IonCol>

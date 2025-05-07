@@ -20,7 +20,7 @@ import {
   import { homeOutline, logOutOutline, rocketOutline, settingsOutline } from 'ionicons/icons';
   import { Redirect, Route } from 'react-router';
   import Home from './Home';
-  import About from './About';
+  import About from './Leaderboard';
   import Details from './Details';
   import { supabase } from '../utils/supabaseClient';
   import { useState } from 'react';
@@ -34,7 +34,7 @@ import {
   
     const path = [
       { name: 'Home', url: '/it35-lab/app/home', icon: 'https://media.tenor.com/-oHw-ghEEQgAAAAm/finaly-mood.webp' },
-      { name: 'About', url: '/it35-lab/app/about', icon: 'https://media.tenor.com/QP_YoQt9DZwAAAAM/tweek-smash-bros-tweek.gif' },
+      { name: 'Leaderboard', url: '/it35-lab/app/leaderboard', icon: 'https://media.tenor.com/QP_YoQt9DZwAAAAM/tweek-smash-bros-tweek.gif' },
       { name: 'Profile', url: '/it35-lab/app/profile', icon: 'https://media.tenor.com/a5a4uCOYfygAAAAM/profile-picture-rock.gif' },
     ];
   
@@ -96,7 +96,7 @@ import {
           <IonRouterOutlet id="main">
             <Route exact path="/it35-lab/app/home" component={Home} />
             <Route exact path="/it35-lab/app/home/details" component={Details} />
-            <Route exact path="/it35-lab/app/about" component={About} />
+            <Route exact path="/it35-lab/app/leaderboard" component={About} />
             <Route exact path="/it35-lab/app/profile" component={EditProfilePage} />
             <Route exact path="/it35-lab/app">
               <Redirect to="/it35-lab/app/home" />

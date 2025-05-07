@@ -39,7 +39,7 @@ const Leaderboard: React.FC = () => {
       if (error) {
         console.error("Error fetching leaderboard:", error);
       } else if (data) {
-        setResults(data as Result[]);
+        setResults(data as unknown as Result[]);
       }
     };
 
